@@ -1,0 +1,44 @@
+@use '/src/styles/constants/colors';
+@use '/src/styles/mixins/flexbox';
+
+.headerContainer {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 56px;
+  background-color: colors.$WHITE;
+
+  .headerWrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 96%;
+    height: 100%;
+    padding: 0 20px;
+    margin: 0 auto;
+  }
+
+  ul {
+    display: flex;
+
+    li {
+      margin-left: 30px;
+
+      a {
+        font-size: 1rem;
+        font-weight: 400;
+        color: colors.$NAVTEXT;
+        text-decoration: none;
+        letter-spacing: -0.018em;
+        white-space: nowrap;
+      }
+
+      .isActive {
+        text-decoration: underline;
+        text-decoration-color: colors.$NAVTEXT;
+        text-underline-position: under;
+      }
+    }
+  }
+}
