@@ -15,7 +15,7 @@ const Layout = () => {
       </header>
       <main className={styles.main}>
         <SearchInput />
-        <Suspense fallback={<SusLoding />}>
+        <Suspense fallback={<SusLoding content='로딩중입니다.' />}>
           <Outlet />
         </Suspense>
       </main>

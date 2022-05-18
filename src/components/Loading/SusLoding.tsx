@@ -1,9 +1,13 @@
 import styles from './SusLoading.module.scss'
 
-export const SusLoding = () => {
+interface SuSLoding {
+  content: string
+}
+
+export const SusLoding = ({ content }: SuSLoding) => {
   return (
     <div className={styles.resultContainer}>
-      <div className={styles.resultBox}>로딩중입니다</div>
+      <div className={styles.resultBox}>{content}</div>
     </div>
   )
 }

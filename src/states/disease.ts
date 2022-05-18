@@ -7,7 +7,7 @@ export const searchState = atom<string>({
   default: '',
 })
 
-export const searchResultState = selector<Items | null>({
+export const searchResultState = selector<Items | null | string>({
   key: '#SearchResultState',
   get: async ({ get }) => {
     const search = get(searchState)
@@ -16,10 +16,21 @@ export const searchResultState = selector<Items | null>({
       return null
     }
 
-    const result = getOpenDiseaseAPi({ searchText: search }).then((res) => {
-      console.count('recoill API 호출')
-      return res.data.response.body.items
-    })
+    const result = getOpenDiseaseAPi({ searchText: search })
+      .then((res) => {
+        return res.data.response
+      })
+      .then((data) => {
+        let finalData
+        if (data.header.resultCode === '00') {
+          // eslint-disable-next-line no-console
+          console.count('recoill API 호출')
+          finalData = data.body.items
+        } else {
+          finalData = data.header.resultMsg
+        }
+        return finalData
+      })
 
     return result
   },
