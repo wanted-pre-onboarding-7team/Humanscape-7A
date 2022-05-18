@@ -1,0 +1,42 @@
+@use '/src/styles/constants/colors';
+@use '/src/styles/mixins/responsive';
+
+.resultContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 20px;
+  margin-right: auto;
+  margin-left: auto;
+
+  .resultBox {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    max-height: 350px;
+    padding: 16px 24px;
+    background-color: colors.$WHITE;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: colors.$RESULTTITLE;
+    letter-spacing: -0.018em;
+
+    svg {
+      margin-right: 10px;
+    }
+
+    .mark {
+      font-weight: 800;
+    }
+  }
+}
+
+@include responsive.after(MD) {
+  .resultContainer {
+    max-width: 700px;
+  }
+}

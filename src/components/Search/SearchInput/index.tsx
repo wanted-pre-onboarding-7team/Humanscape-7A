@@ -2,25 +2,31 @@ import styles from './SearchInput.module.scss'
 import { SearchIcon } from 'assets/svgs/index'
 import { ChangeEvent, FormEvent, useCallback, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
-
-const debounce = (callback: any, duration: number) => {
-  let timer: NodeJS.Timeout
-  return (...args: any) => {
-    clearTimeout(timer)
-    timer = setTimeout(() => callback(...args), duration)
-  }
-}
+import { searchState } from 'states/disease'
+import { useRecoilState, useSetRecoilState } from 'recoil'
+import _ from 'lodash'
 
 const SearchInput = () => {
-  const [, setSearchParams] = useSearchParams()
   const [searchWord, setSearchWord] = useState('')
+
+  const [, setSearchParams] = useSearchParams()
+
+  const [search, setSearch] = useRecoilState(searchState)
+
+  const delaySetValue = useCallback(
+    _.debounce((value) => {
+      setSearch(value)
+    }, 500),
+    []
+  )
 
   const onChangeHandle = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
-      debounce(setSearchParams({ search: e.currentTarget.value }), 500)
-      setSearchWord(e.currentTarget.value)
+      delaySetValue(e.target.value)
+      setSearchWord(e.target.value)
     },
-    [setSearchParams]
+
+    [delaySetValue]
   )
 
   const submitHandle = (e: FormEvent<HTMLFormElement>) => {

@@ -3,6 +3,9 @@ import styles from './Layout.module.scss'
 
 import Header from 'components/Header'
 import Footer from 'components/Footer'
+import { Suspense } from 'react'
+import SearchInput from 'components/Search/SearchInput'
+import { SusLoding } from 'components/Loading/SusLoding'
 
 const Layout = () => {
   return (
@@ -11,7 +14,10 @@ const Layout = () => {
         <Header />
       </header>
       <main className={styles.main}>
-        <Outlet />
+        <SearchInput />
+        <Suspense fallback={<SusLoding />}>
+          <Outlet />
+        </Suspense>
       </main>
       <footer className={styles.footer}>
         <Footer />

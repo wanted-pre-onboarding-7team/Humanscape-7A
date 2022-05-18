@@ -5,7 +5,6 @@ const ReduxToolkitSearch = () => {
   return (
     <div>
       <SEO title='redux' />
-      <SearchInput />
     </div>
   )
 }
