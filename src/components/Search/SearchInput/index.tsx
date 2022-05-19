@@ -30,6 +30,7 @@ const SearchInput = () => {
     }
 
     if (e.key === 'ArrowDown') {
+      console.log('너 잘되니?')
       setKeyDownIndex((prev) => prev + 1)
     }
 

@@ -3,7 +3,7 @@ import { useSetRecoilState } from 'recoil'
 import { searchState } from 'states/disease'
 
 const useDebounce = (value: string, delay: number) => {
-  const [debounceValue, setDebounceValue] = useState(value)
+  const [debounceValue] = useState(value)
   const setSearch = useSetRecoilState(searchState)
 
   useEffect(() => {

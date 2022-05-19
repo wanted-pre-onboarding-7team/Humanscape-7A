@@ -2,11 +2,16 @@ import styles from './SearchResult.module.scss'
 import { SusLoding } from 'components/Loading/SusLoding'
 import { ResultItem } from './ResultItem'
 import { Items } from 'types/disease'
+import { useRecoilValue } from 'recoil'
+import { searchState } from 'states/disease'
 
 interface ISearchResultProp {
-  data: Items | null | string
+  data: Items | null | string | undefined
 }
 export const SearchResult = ({ data }: ISearchResultProp) => {
+  const search = useRecoilValue(searchState)
+
+  if (!search) return null
   if (!data) return <SusLoding content='검색 결과가 없습니다.' />
   if (typeof data === 'string') return <SusLoding content={data} />
   if (!Array.isArray(data.item) && typeof data.item === 'object') return <SusLoding content={data.item.sickNm} />

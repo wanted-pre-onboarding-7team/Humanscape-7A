@@ -1,6 +1,5 @@
 import axios from 'axios'
 import { IDiseaseAPIRep } from 'types/disease'
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 const url = '/B551182/diseaseInfoService/getDissNameCodeList'
 
