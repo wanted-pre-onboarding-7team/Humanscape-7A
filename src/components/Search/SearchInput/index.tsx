@@ -17,7 +17,7 @@ const SearchInput = () => {
 
   const onChangeHandle = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
-      debounce(setSearchParams({ search: e.currentTarget.value }), 500)
+      debounce(setSearchParams({ search: e.currentTarget.value }), 5000)
       setSearchWord(e.currentTarget.value)
     },
     [setSearchParams]
