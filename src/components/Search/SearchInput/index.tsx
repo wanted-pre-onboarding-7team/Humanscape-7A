@@ -1,7 +1,6 @@
 import { ChangeEvent, FormEvent, KeyboardEvent, useCallback, useState } from 'react'
 import { searchState, keyDownIndexState } from 'states/disease'
 import { useRecoilState } from 'recoil'
-import _ from 'lodash'
 
 import useDebounce from 'hooks/useDebounce'
 
@@ -11,28 +10,13 @@ import styles from './SearchInput.module.scss'
 const SearchInput = () => {
   const [searchWord, setSearchWord] = useState('')
   const [keyDownIndex, setKeyDownIndex] = useRecoilState(keyDownIndexState)
-
   const [search, setSearch] = useRecoilState(searchState)
 
-  const delaySetValue = useCallback(
-    _.debounce((value) => {
-      setSearch(value)
-    }, 500),
-    []
-  )
+  const onChangeHandle = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearchWord(e.target.value)
+  }
 
   useDebounce(searchWord, 500)
-
-  const onChangeHandle = useCallback(
-    (e: ChangeEvent<HTMLInputElement>) => {
-      delaySetValue(e.target.value)
-      setSearchWord(e.target.value)
-    },
-
-    [delaySetValue]
-  )
-
-  useDebounce(searchWord, 1000)
 
   const submitHandle = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -66,22 +50,6 @@ const SearchInput = () => {
         <br />
         온라인으로 참여하기
       </div>
-<<<<<<< HEAD
-      {/* <form className={styles.searchMinBox} onSubmit={submitHandle}>
-        <input placeholder='질환명을 입력해 주세요.' onChange={onChangeHandle} value={searchWord} />
-=======
-      <form className={styles.searchMinBox} onSubmit={submitHandle}>
-        <input
-          placeholder='질환명을 입력해 주세요.'
-          onChange={onChangeHandle}
-          value={searchWord}
-          onKeyDown={onKeyDown}
-        />
->>>>>>> 4c062fa45a275e2816c4532c8ad4a82e70a02f64
-        <button type='submit'>
-          <SearchIcon />
-        </button>
-      </form> */}
       <form className={styles.searchForm} onSubmit={submitHandle}>
         <div className={styles.inputBox}>
           <SearchIcon />
