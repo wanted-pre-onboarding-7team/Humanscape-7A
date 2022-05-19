@@ -1,8 +1,8 @@
 export interface IDiseaseAPIRep {
-  response: Response
+  response: IResponse
 }
 
-export interface Response {
+export interface IResponse {
   header: IHeader
   body: IBody
 }

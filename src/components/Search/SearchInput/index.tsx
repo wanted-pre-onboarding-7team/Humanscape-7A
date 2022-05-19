@@ -1,31 +1,62 @@
-import styles from './SearchInput.module.scss'
-import { SearchIcon } from 'assets/svgs/index'
-import { ChangeEvent, FormEvent, useCallback, useState } from 'react'
-import { useSearchParams } from 'react-router-dom'
+import { ChangeEvent, FormEvent, KeyboardEvent, useCallback, useState } from 'react'
+import { searchState, keyDownIndexState } from 'states/disease'
+import { useRecoilState } from 'recoil'
+import _ from 'lodash'
 
-const debounce = (callback: any, duration: number) => {
-  let timer: NodeJS.Timeout
-  return (...args: any) => {
-    clearTimeout(timer)
-    timer = setTimeout(() => callback(...args), duration)
-  }
-}
+import useDebounce from 'hooks/useDebounce'
+
+import { SearchIcon } from 'assets/svgs/index'
+import styles from './SearchInput.module.scss'
 
 const SearchInput = () => {
-  const [, setSearchParams] = useSearchParams()
   const [searchWord, setSearchWord] = useState('')
+  const [keyDownIndex, setKeyDownIndex] = useRecoilState(keyDownIndexState)
+
+  const [search, setSearch] = useRecoilState(searchState)
+
+  const delaySetValue = useCallback(
+    _.debounce((value) => {
+      setSearch(value)
+    }, 500),
+    []
+  )
+
+  useDebounce(searchWord, 500)
 
   const onChangeHandle = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
-      debounce(setSearchParams({ search: e.currentTarget.value }), 500)
-      setSearchWord(e.currentTarget.value)
+      delaySetValue(e.target.value)
+      setSearchWord(e.target.value)
     },
-    [setSearchParams]
+
+    [delaySetValue]
   )
+
+  useDebounce(searchWord, 1000)
 
   const submitHandle = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    e.currentTarget.focus()
+  }
+
+  const onKeyDown = (e: KeyboardEvent) => {
+    if (e.nativeEvent.isComposing) return
+
+    if (e.key === 'ArrowUp') {
+      e.preventDefault()
+    }
+
+    if (e.key === 'ArrowDown') {
+      setKeyDownIndex((prev) => prev + 1)
+    }
+
+    if (e.key === 'ArrowUp') {
+      setKeyDownIndex((prev) => {
+        if (prev < 0) {
+          return 0
+        }
+        return prev - 1
+      })
+    }
   }
 
   return (
@@ -35,8 +66,18 @@ const SearchInput = () => {
         <br />
         온라인으로 참여하기
       </div>
+<<<<<<< HEAD
       {/* <form className={styles.searchMinBox} onSubmit={submitHandle}>
         <input placeholder='질환명을 입력해 주세요.' onChange={onChangeHandle} value={searchWord} />
+=======
+      <form className={styles.searchMinBox} onSubmit={submitHandle}>
+        <input
+          placeholder='질환명을 입력해 주세요.'
+          onChange={onChangeHandle}
+          value={searchWord}
+          onKeyDown={onKeyDown}
+        />
+>>>>>>> 4c062fa45a275e2816c4532c8ad4a82e70a02f64
         <button type='submit'>
           <SearchIcon />
         </button>
@@ -44,7 +85,12 @@ const SearchInput = () => {
       <form className={styles.searchForm} onSubmit={submitHandle}>
         <div className={styles.inputBox}>
           <SearchIcon />
-          <input placeholder='질환명을 입력해 주세요.' onChange={onChangeHandle} value={searchWord} />
+          <input
+            placeholder='질환명을 입력해 주세요.'
+            onChange={onChangeHandle}
+            value={searchWord}
+            onKeyDown={onKeyDown}
+          />
         </div>
         <button type='submit' className={styles.searchButton}>
           검색
