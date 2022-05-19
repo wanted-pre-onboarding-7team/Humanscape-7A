@@ -1,9 +1,12 @@
-import styles from './SearchInput.module.scss'
-import { SearchIcon } from 'assets/svgs/index'
 import { ChangeEvent, FormEvent, KeyboardEvent, useCallback, useState } from 'react'
 import { searchState, keyDownIndexState } from 'states/disease'
 import { useRecoilState } from 'recoil'
 import _ from 'lodash'
+
+import useDebounce from 'hooks/useDebounce'
+
+import { SearchIcon } from 'assets/svgs/index'
+import styles from './SearchInput.module.scss'
 
 const SearchInput = () => {
   const [searchWord, setSearchWord] = useState('')
@@ -18,6 +21,8 @@ const SearchInput = () => {
     []
   )
 
+  useDebounce(searchWord, 500)
+
   const onChangeHandle = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
       delaySetValue(e.target.value)
@@ -26,6 +31,8 @@ const SearchInput = () => {
 
     [delaySetValue]
   )
+
+  useDebounce(searchWord, 1000)
 
   const submitHandle = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()

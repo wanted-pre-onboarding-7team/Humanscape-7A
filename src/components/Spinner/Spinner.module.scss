@@ -1,0 +1,8 @@
+.spinner {
+  position: absolute;
+  top: calc(50% - #{30px / 2});
+  left: calc(50% - #{30px / 2});
+  width: 30px;
+  height: 30px;
+  animation: spinner 0.75s linear;
+}

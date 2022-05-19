@@ -5,7 +5,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 const url = '/B551182/diseaseInfoService/getDissNameCodeList'
 
 interface OpenDiseaseParams {
-  searchText: string | null
+  searchText: string | null | undefined
 }
 
 export const getOpenDiseaseAPi = (params: OpenDiseaseParams) =>
