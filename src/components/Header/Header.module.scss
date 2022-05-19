@@ -1,11 +1,10 @@
 @use '/src/styles/constants/colors';
 @use '/src/styles/mixins/flexbox';
+@use '/src/styles/mixins/responsive';
 
 .headerContainer {
-  top: 0;
-  left: 0;
   width: 100%;
-  height: 56px;
+  height: 65px;
   background-color: colors.$WHITE;
 
   .headerWrapper {
@@ -13,7 +12,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    width: 96%;
+    width: 100%;
     height: 100%;
     padding: 0 20px;
     margin: 0 auto;
@@ -40,5 +39,11 @@
         text-underline-position: under;
       }
     }
+  }
+}
+
+@include responsive.after(MD) {
+  .headerWrapper {
+    max-width: 1000px;
   }
 }
