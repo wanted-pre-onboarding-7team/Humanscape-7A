@@ -1,27 +1,24 @@
-import styles from './SearchInput.module.scss'
-import { SearchIcon } from 'assets/svgs/index'
-import { ChangeEvent, FormEvent, useCallback, useState } from 'react'
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 
-const debounce = (callback: any, duration: number) => {
-  let timer: NodeJS.Timeout
-  return (...args: any) => {
-    clearTimeout(timer)
-    timer = setTimeout(() => callback(...args), duration)
-  }
-}
+import useDebounce from 'hooks/useDebounce'
+
+import { SearchIcon } from 'assets/svgs/index'
+import styles from './SearchInput.module.scss'
 
 const SearchInput = () => {
   const [, setSearchParams] = useSearchParams()
   const [searchWord, setSearchWord] = useState('')
 
-  const onChangeHandle = useCallback(
-    (e: ChangeEvent<HTMLInputElement>) => {
-      debounce(setSearchParams({ search: e.currentTarget.value }), 500)
-      setSearchWord(e.currentTarget.value)
-    },
-    [setSearchParams]
-  )
+  const onChangeHandle = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearchWord(e.currentTarget.value)
+  }
+
+  useDebounce(searchWord, 1000)
+
+  // useEffect(() => {
+  //   setSearchParams({ searchText: debouncedSearchTerm })
+  // }, [debouncedSearchTerm])
 
   const submitHandle = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
