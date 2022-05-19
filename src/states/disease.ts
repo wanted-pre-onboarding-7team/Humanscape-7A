@@ -7,6 +7,11 @@ export const searchState = atom<string>({
   default: '',
 })
 
+export const keyDownIndexState = atom<number>({
+  key: '#keyDownIndexState',
+  default: 0,
+})
+
 export const searchResultState = selector<Items | null | string>({
   key: '#SearchResultState',
   get: async ({ get }) => {
@@ -33,5 +38,8 @@ export const searchResultState = selector<Items | null | string>({
       })
 
     return result
+  },
+  cachePolicy_UNSTABLE: {
+    eviction: 'most-recent',
   },
 })

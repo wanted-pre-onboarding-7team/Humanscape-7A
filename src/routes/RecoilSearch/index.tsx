@@ -1,7 +1,6 @@
-import SearchInput from 'components/Search/SearchInput'
-import { SearchResult } from 'components/Search/SearchResult'
+import { SearchResult } from 'components/Search/SearchResult/ResultContainer'
 import SEO from 'components/Seo'
-import { Suspense } from 'react'
+
 import { useRecoilValue } from 'recoil'
 import { searchResultState } from 'states/disease'
 

@@ -1,15 +1,14 @@
 import styles from './SearchInput.module.scss'
 import { SearchIcon } from 'assets/svgs/index'
-import { ChangeEvent, FormEvent, useCallback, useState } from 'react'
+import { ChangeEvent, FormEvent, KeyboardEvent, useCallback, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { searchState } from 'states/disease'
-import { useRecoilState, useSetRecoilState } from 'recoil'
+import { searchState, keyDownIndexState } from 'states/disease'
+import { useRecoilState } from 'recoil'
 import _ from 'lodash'
 
 const SearchInput = () => {
   const [searchWord, setSearchWord] = useState('')
-
-  const [, setSearchParams] = useSearchParams()
+  const [keyDownIndex, setKeyDownIndex] = useRecoilState(keyDownIndexState)
 
   const [search, setSearch] = useRecoilState(searchState)
 
@@ -31,7 +30,27 @@ const SearchInput = () => {
 
   const submitHandle = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    e.currentTarget.focus()
+  }
+
+  const onKeyDown = (e: KeyboardEvent) => {
+    if (e.nativeEvent.isComposing) return
+
+    if (e.key === 'ArrowUp') {
+      e.preventDefault()
+    }
+
+    if (e.key === 'ArrowDown') {
+      setKeyDownIndex((prev) => prev + 1)
+    }
+
+    if (e.key === 'ArrowUp') {
+      setKeyDownIndex((prev) => {
+        if (prev < 0) {
+          return 0
+        }
+        return prev - 1
+      })
+    }
   }
 
   return (
@@ -42,7 +61,12 @@ const SearchInput = () => {
         온라인으로 참여하기
       </div>
       <form className={styles.searchMinBox} onSubmit={submitHandle}>
-        <input placeholder='질환명을 입력해 주세요.' onChange={onChangeHandle} value={searchWord} />
+        <input
+          placeholder='질환명을 입력해 주세요.'
+          onChange={onChangeHandle}
+          value={searchWord}
+          onKeyDown={onKeyDown}
+        />
         <button type='submit'>
           <SearchIcon />
         </button>
@@ -50,7 +74,12 @@ const SearchInput = () => {
       <form className={styles.searchMaxBox} onSubmit={submitHandle}>
         <div className={styles.inputBox}>
           <SearchIcon />
-          <input placeholder='질환명을 입력해 주세요.' onChange={onChangeHandle} value={searchWord} />
+          <input
+            placeholder='질환명을 입력해 주세요.'
+            onChange={onChangeHandle}
+            value={searchWord}
+            onKeyDown={onKeyDown}
+          />
         </div>
         <button type='submit'>검색</button>
       </form>
