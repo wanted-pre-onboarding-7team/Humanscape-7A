@@ -35,18 +35,20 @@ const SearchInput = () => {
         <br />
         온라인으로 참여하기
       </div>
-      <form className={styles.searchMinBox} onSubmit={submitHandle}>
+      {/* <form className={styles.searchMinBox} onSubmit={submitHandle}>
         <input placeholder='질환명을 입력해 주세요.' onChange={onChangeHandle} value={searchWord} />
         <button type='submit'>
           <SearchIcon />
         </button>
-      </form>
-      <form className={styles.searchMaxBox} onSubmit={submitHandle}>
+      </form> */}
+      <form className={styles.searchForm} onSubmit={submitHandle}>
         <div className={styles.inputBox}>
           <SearchIcon />
           <input placeholder='질환명을 입력해 주세요.' onChange={onChangeHandle} value={searchWord} />
         </div>
-        <button type='submit'>검색</button>
+        <button type='submit' className={styles.searchButton}>
+          검색
+        </button>
       </form>
     </div>
   )

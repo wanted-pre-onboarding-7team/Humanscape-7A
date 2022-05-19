@@ -4,118 +4,63 @@
 .searchContainer {
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 80px 20px 8px;
+  padding: 0 20px 8px;
   margin-right: auto;
   margin-left: auto;
 
   .title {
     margin-bottom: 20px;
-    font-size: 20px;
+    font-size: 2.125rem;
     font-weight: 700;
     line-height: 1.6;
     text-align: center;
     letter-spacing: -0.018em;
   }
 
-  .searchMinBox {
+  .searchForm {
+    position: relative;
     display: flex;
     flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
     width: 100%;
-    padding: 14px 20px;
-    background-color: colors.$WHITE;
-    border-radius: 50px;
-    box-shadow: 0 2px 2px rgba(30, 32, 37, 10%);
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: -0.018em;
+    background-color: #ffffff;
+    border-radius: 42px;
 
-    input {
-      width: 100%;
-      font-size: 0.875rem;
-      font-weight: 400;
-      line-height: 1.6;
-      letter-spacing: -0.018em;
-
-      input::placeholder {
-        color: colors.$INPUTTEXT;
-      }
-    }
-
-    button {
-      height: 20px;
-    }
-  }
-
-  .searchMaxBox {
-    display: none;
-  }
-}
-
-@include responsive.after(MD) {
-  .searchContainer {
-    max-width: 700px;
-
-    .title {
-      margin-bottom: 20px;
-      font-size: 2.125rem;
-      font-weight: 700;
-      line-height: 1.6;
-      text-align: center;
-      letter-spacing: -0.018em;
-    }
-
-    .searchMinBox {
-      display: none;
-    }
-
-    .searchMaxBox {
-      position: relative;
+    .inputBox {
       display: flex;
+      flex: 1;
       flex-direction: row;
       align-items: center;
-      justify-content: space-between;
-      width: 100%;
+      padding: 20px 24px;
+      font-size: 1.125rem;
+      font-weight: 700;
+      letter-spacing: -0.018em;
 
-      .inputBox {
-        display: flex;
+      input {
         flex: 1;
-        flex-direction: row;
-        align-items: center;
-        padding: 20px 24px;
-        font-size: 1.125rem;
-        font-weight: 400;
-        letter-spacing: -0.018em;
-        background-color: colors.$WHITE;
-        border-radius: 42px 0 0 42px;
-
-        input {
-          width: 100%;
-          margin-left: 10px;
-          font-size: 1.125rem;
-          font-weight: 400;
-          line-height: 1.4;
-          letter-spacing: -0.018em;
-        }
-
-        input::placeholder {
-          font-weight: 300;
-          color: colors.$INPUTTEXT;
-        }
+        padding-left: 10px;
       }
+    }
 
-      button {
-        padding: 20px 32px;
-        font-size: 1.125rem;
-        font-weight: 500;
-        line-height: 1.4;
-        color: colors.$WHITE;
-        letter-spacing: -0.018em;
-        cursor: pointer;
-        background-color: colors.$BUTTON;
-        border-width: 0;
-        border-radius: 0 42px 42px 0;
-      }
+    .searchButton {
+      padding: 18px 32px;
+      font-size: 1.125rem;
+      font-weight: 700;
+      line-height: 1.6;
+      color: #ffffff;
+      letter-spacing: -0.018em;
+      cursor: pointer;
+      background-color: #007be9;
+      border-width: 0;
+      border-top-right-radius: 42px;
+      border-bottom-right-radius: 42px;
     }
   }
 }
+
+//@include responsive.after(MD) { }

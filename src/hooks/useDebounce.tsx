@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react'
 
-interface debounceProps<T> {
-  value: T
+interface debounceProps {
+  value: string
   delay: number
 }
 
-function useDebounce<T>({ value, delay }: debounceProps<T>): T {
+function useDebounce({ value, delay }: debounceProps) {
   const [debouncedValue, setDebouncedValue] = useState(value)
 
   useEffect(() => {
@@ -16,7 +16,7 @@ function useDebounce<T>({ value, delay }: debounceProps<T>): T {
     return () => {
       clearTimeout(handler)
     }
-  }, [value])
+  }, [delay, value])
 
   return debouncedValue
 }
