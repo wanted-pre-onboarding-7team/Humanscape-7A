@@ -22,6 +22,8 @@ const SearchInput = () => {
     []
   )
 
+  useDebounce(searchWord, 500)
+
   const onChangeHandle = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
       delaySetValue(e.target.value)

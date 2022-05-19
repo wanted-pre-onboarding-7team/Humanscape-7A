@@ -1,16 +1,11 @@
 import { useQuery } from 'react-query'
 
 import SEO from 'components/Seo'
-import { useSearchParams } from 'react-router-dom'
-
 import { getOpenDiseaseAPi } from 'services/disease'
-
-// import { useSearchParams } from 'react-router-dom'
 import useSearchValue from 'hooks/useSearchValue'
+import { SearchResult } from 'components/Search/SearchResult'
 
 const ReactQuery = () => {
-  const [searchParams] = useSearchParams()
-  const currentSearch = searchParams.get('search')
   const searchWord = useSearchValue('searchText', '')
 
   const { data, isLoading, isError } = useQuery(
@@ -44,7 +39,6 @@ const ReactQuery = () => {
   return (
     <div>
       <SEO title='ReactQuery' />
-      <SearchInput />
       <SearchResult data={data} isLoading={isLoading} isError={isError} />
     </div>
   )
