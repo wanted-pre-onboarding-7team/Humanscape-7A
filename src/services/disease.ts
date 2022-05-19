@@ -13,7 +13,7 @@ export const getOpenDiseaseAPi = (params: OpenDiseaseParams) =>
     params: {
       ...params,
       serviceKey: process.env.REACT_APP_OPEN_DATA,
-      numOfRows: '10',
+      numOfRows: '100',
       sickType: '1',
       medTp: '2',
       diseaseType: 'SICK_NM',
