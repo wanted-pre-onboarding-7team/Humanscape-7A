@@ -12,9 +12,7 @@ import { store } from './states'
 
 import App from './routes'
 
-const queryClient = new QueryClient({
-  defaultOptions: { queries: { refetchOnMount: false } },
-})
+const queryClient = new QueryClient()
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(

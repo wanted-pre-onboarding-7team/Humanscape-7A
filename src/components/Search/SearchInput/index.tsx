@@ -7,7 +7,7 @@ import { SearchIcon } from 'assets/svgs/index'
 import styles from './SearchInput.module.scss'
 
 const SearchInput = () => {
-  const [, setSearchParams] = useSearchParams()
+  // const [, setSearchParams] = useSearchParams()
   const [searchWord, setSearchWord] = useState('')
 
   const onChangeHandle = (e: ChangeEvent<HTMLInputElement>) => {
@@ -15,10 +15,6 @@ const SearchInput = () => {
   }
 
   useDebounce(searchWord, 1000)
-
-  // useEffect(() => {
-  //   setSearchParams({ searchText: debouncedSearchTerm })
-  // }, [debouncedSearchTerm])
 
   const submitHandle = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()

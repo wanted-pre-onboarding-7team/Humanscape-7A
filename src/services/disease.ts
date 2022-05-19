@@ -4,7 +4,7 @@ import { IDiseaseAPIRep } from 'types/disease'
 const url = '/B551182/diseaseInfoService/getDissNameCodeList'
 
 interface OpenDiseaseParams {
-  searchText: string | null
+  searchText: string | null | undefined
 }
 
 export const getOpenDiseaseAPi = (params: OpenDiseaseParams) =>
