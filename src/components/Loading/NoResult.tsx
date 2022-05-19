@@ -1,4 +1,4 @@
-import styles from './SusLoading.module.scss'
+import styles from './NoResult.module.scss'
 
 interface SuSLoding {
   content: string
