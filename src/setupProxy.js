@@ -1,12 +1,13 @@
-const { createProxyMiddleware } = require('http-proxy-middleware')
+/* eslint-disable func-names */
+import { createProxyMiddleware } from 'http-proxy-middleware'
 
-module.exports = function (app) {
+export default function (app) {
   app.use(
     '/api',
     createProxyMiddleware({
-      target: 'http://apis.data.go.kr',
+      target: 'https://apis.data.go.kr',
       changeOrigin: true,
-      router: { '/api': 'http://apis.data.go.kr' },
+      router: { '/api': 'https://apis.data.go.kr' },
       pathRewrite: { '^/api': '' },
     })
   )
