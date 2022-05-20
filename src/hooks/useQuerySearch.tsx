@@ -16,10 +16,11 @@ const useQuerySearch = () => {
       }),
     {
       // 쿼리가 없는 경우
-      enabled: !!search,
+      enabled: !!search.trim(),
       staleTime: 2 * 60 * 1000,
       cacheTime: Infinity,
       suspense: true,
+      retry: 2,
     }
   )
 

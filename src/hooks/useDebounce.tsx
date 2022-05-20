@@ -8,7 +8,7 @@ const useDebounce = (value: string, delay: number) => {
 
   useEffect(() => {
     const timer: NodeJS.Timeout = setTimeout(() => {
-      setSearch(value)
+      setSearch(value.trim())
     }, delay)
 
     return () => {
