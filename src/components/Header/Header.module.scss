@@ -22,10 +22,11 @@
     display: flex;
 
     li {
-      margin-left: 30px;
+      padding: 0 5px;
+      text-align: center;
 
       a {
-        font-size: 1rem;
+        font-size: 14px;
         font-weight: 400;
         color: colors.$NAVTEXT;
         text-decoration: none;
@@ -37,6 +38,20 @@
         text-decoration: underline;
         text-decoration-color: colors.$NAVTEXT;
         text-underline-position: under;
+      }
+    }
+  }
+}
+
+@include responsive.after(SD) {
+  .headerContainer {
+    ul {
+      li {
+        padding: 0 10px;
+
+        a {
+          font-size: 18px;
+        }
       }
     }
   }

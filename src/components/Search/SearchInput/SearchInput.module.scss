@@ -13,7 +13,7 @@
 
   .title {
     margin-bottom: 20px;
-    font-size: 30px;
+    font-size: 26px;
     font-weight: 700;
     line-height: 1.6;
     text-align: center;
@@ -53,6 +53,7 @@
     }
 
     .searchButton {
+      display: none;
       padding: 18px 32px;
       font-size: 1.125rem;
       font-weight: 700;
@@ -67,4 +68,16 @@
   }
 }
 
-//@include responsive.after(MD) { }
+@include responsive.after(SD) {
+  .searchContainer {
+    .title {
+      font-size: 30px;
+    }
+
+    .searchForm {
+      .searchButton {
+        display: block;
+      }
+    }
+  }
+}

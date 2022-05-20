@@ -5,13 +5,12 @@
 @use '/src/styles/mixins/responsive';
 
 .layoutContainer {
-  min-width: 600px;
   background-color: colors.$BACKGROUND;
 
   .main {
     max-width: 700px;
     height: 100%;
-    min-height: 100vh;
+    min-height: calc(100vh - 120px);
     padding: 100px 20px;
     margin: 0 auto;
   }

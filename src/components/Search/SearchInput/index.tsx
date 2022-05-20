@@ -1,11 +1,13 @@
 import { ChangeEvent, FormEvent, useState, useEffect } from 'react'
 import { clickItemState } from 'states/disease'
 import { useRecoilState, useSetRecoilState } from 'recoil'
+import cx from 'classnames'
+
 import useKeyUpDown from 'hooks/keyPress/useKeyUpDown'
 import useDebounce from 'hooks/useDebounce'
 
-import { SearchIcon } from 'assets/svgs/index'
 import styles from './SearchInput.module.scss'
+import { SearchIcon } from 'assets/svgs/index'
 import { keyDownIndexState } from 'services/keypress'
 
 const SearchInput = () => {
