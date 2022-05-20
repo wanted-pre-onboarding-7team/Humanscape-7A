@@ -1,6 +1,8 @@
 # 원티드 프리온보딩 휴먼스케이프 과제 7-A팀
 
-[🌐 배포주소](https://humanscape-7a.netlify.app/)
+[🌐 배포주소](https://humanscape-7a.netlify.app/)<br />
+
+[🌐 팀 노션](https://www.notion.so/Humanscape-7A-e8b93a1d7adb4dfd9e530bae5ea2075e)
 
 <br />
 
@@ -85,7 +87,7 @@ yarn start
 
 **![화면-기록-2022-05-20-오후-9 56 38](https://user-images.githubusercontent.com/90893364/169535695-ee5428a7-dda1-4568-8cec-cda09f046c01.gif)**
 
-- 검색어 리스트 키보드로 이동 및 enter시, input창으로 text 이동
+- 검색어 리스트 키보드로 이동 및 Enter시, input창으로 text 이동
 
 **![화면-기록-2022-05-20-오후-7 23 20](https://user-images.githubusercontent.com/90893364/169536432-53d935ae-f0f0-42e5-804c-8ef305d95444.gif)**
 
@@ -102,7 +104,7 @@ yarn start
 
 ### Recoil를 통한 global State 관리
 
-- 검색키워드 관리
+- 검색 키워드 관리
 - 검색 결과창 index 값 관리(키보드 이벤트)
 
 <br />
@@ -132,13 +134,13 @@ yarn start
 
 ### API 최적화
 
-한글 입력 시 연속 되는 호출을 막아주기 위해서 seTimeout 함수를 사용하여 디바운싱 작업
+한글 입력 시, 연속 되는 호출을 막아주기 위해서 seTimeout 함수를 사용하여 디바운싱 작업
 
 <br />
 
 #### recoil
 
-1. selector의 get async를 사용하여 비동기 호출을 하여 케싱 적용 cachePolicy_UNSTABLE keep-all 값을 적용(기본값)
+1. selector의 get async를 사용하여 비동기 호출을 하여 케싱 적용 cachePolicy_UNSTABLE keep-all 값 적용(기본값)
 
 #### useQuery
 
@@ -152,17 +154,23 @@ yarn start
 ## **어려웠던 점**
 
 - recoil, useQuery, redux를 같이 사용하며 하나의 공통 컴포넌트 이용에 있어서 Suspense 사용하는데 Suspense의 Loading 범위를 제안하며 코딩하는 부분이 어려웠다.
-- 로컬에서는 api통신이 원활했지만, 배포 시 통신 오류로 인해 http-proxy-middleware를 이용하여 중간 url를 바꿔줌으로써오류를 해결했다.
-- redux-toolkit: 전역상태 리덕스 사용하여 캐싱 처리를 하려고 했으나, 복잡한 리덕스 설정 방법과 리덕스 툴킷을 사용해서 캐싱 처리를 하는 방법들의 정보가 매우 부족했다. redux-toolkit-query를 이용해서 api 통신 설정을 해주면 useQuery처럼 data, error, isLoading 값들을 불러올 수 있고, 기본적으로 캐시 동작 60초 동안 유지된다고 합니다.
+- 로컬에서는 api통신이 원활했지만, 배포 시 통신 오류로 인해 http-proxy-middleware를 이용하여 중간 url를 바꿔줌으로써 오류를 해결했다.
+- redux-toolkit: 전역상태 리덕스 사용하여 캐싱 처리를 하려고 했으나, 복잡한 리덕스 설정 방법과 리덕스 툴킷을 사용해서 캐싱 처리를 하는 방법들의 정보가 매우 부족했다. redux-toolkit-query를 이용해서 api 통신 설정을 해주면 useQuery처럼 data, error, isLoading 값들을 불러올 수 있고, 기본적으로 캐시 동작 60초 동안 유지된다.
 
 <br />
 
 ## **프로젝트 소감**
 
-reocil & react-query &redux-toolkit 중 가장 효율 적인 것을 알아보기 위하여 각 라이브러리 캐싱 기능을 구현해보았다.
+Humanscape-7팀은 Store와 비동기 통신을 할 때 `React Query`를 함께 사용하면 더 좋다고 해서 그냥 사용하는 것이 아닌, 많은 개발자들이 왜 `Redux/Redux-Toolkit/Recoil` 과 React Query의 조합으로 스토어와 비동기 통신 관리를 하는지, 그렇다면 더 나은 방법은 없을까 같은 의문에서 부터 이러한 기획을 하게 되었습니다. 저희는 상태관리, 캐싱 처리, 비동기 통신, 전역 state 관리를 redux-toolkit, recoil, useQuery 통해 각각 진행했습니다.
+
+<br />
 
 1. Recoil: 비동기 통신의 결과값을 global state 처럼 다룰 수 있고 캐싱 기능을 제공 한다. Suspense를 사용하는 경우와 사용하지 않는 경우를 분할할 수 있지만, use-query 보다 간결성이 떨어진다.
 
 2. React-query: 통신 데이터를 global state 형식으로 지정 할 필요 없이 어느 곳에서나 사용할 수 있는 장점이 있다. 또한 isLoading, isError, isSuccess 등 부수적인 state 와 suspense, retry, staleTiem 등 여러 기능을 제공해준다.
 
 3. Redux-toolkit: store는 전역으로 상태를 관리가 필요한 팝업, 여러 UI 상태관리, 인증 정보 관리 등 Client 전반에 전역으로 관리되는 상태만 가지고 본래의 목적에 맞게 사용을 해야 하고, useQuery를 사용한 비동기 캐싱처리가 가장 편리하고 적합한 것 같다.
+
+  <br />
+
+비동기 통신에 최적화 된 useQuery를 사용함으로 가독성 및 편의성을 증진하고, redux-toolkit & recoil 같은 상태 관리 라이브러리는 전역으로 관리되는 상태에만 적용하여 본래의 목적에 맞게 사용하는게 좋다고 생각합니다.
