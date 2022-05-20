@@ -1,6 +1,6 @@
 import { atom, selector } from 'recoil'
 import { getOpenDiseaseAPi } from 'services/disease'
-import { Items } from 'types/disease'
+import { IBody, Items } from 'types/disease'
 
 export const searchState = atom<string>({
   key: '#searchState',
@@ -12,13 +12,13 @@ export const keyDownIndexState = atom<number>({
   default: 0,
 })
 
-export const searchResultState = selector<Items | null | string>({
+export const searchResultState = selector<IBody | string>({
   key: '#SearchResultState',
   get: async ({ get }) => {
     const search = get(searchState)
 
     if (!search) {
-      return null
+      return ''
     }
 
     const result = getOpenDiseaseAPi({ searchText: search })
@@ -30,7 +30,7 @@ export const searchResultState = selector<Items | null | string>({
         if (data.header.resultCode === '00') {
           // eslint-disable-next-line no-console
           console.count('recoill API 호출')
-          finalData = data.body.items
+          finalData = data.body
         } else {
           finalData = data.header.resultMsg
         }
