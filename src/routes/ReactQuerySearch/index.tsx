@@ -9,7 +9,7 @@ import { searchState } from 'states/disease'
 const ReactQuery = () => {
   const search = useRecoilValue(searchState)
 
-  const { data, isLoading, isError } = useQuery(
+  const { data } = useQuery(
     ['getDiseaseAPi', search],
     () =>
       getOpenDiseaseAPi({ searchText: search }).then((res) => {
@@ -27,7 +27,6 @@ const ReactQuery = () => {
   return (
     <div>
       <SEO title='ReactQuery' />
-      {/* <SearchResult data={search} /> */}
       <SearchResult data={data} />
     </div>
   )

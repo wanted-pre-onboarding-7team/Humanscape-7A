@@ -1,6 +1,6 @@
-import { ChangeEvent, FormEvent, KeyboardEvent, useCallback, useState } from 'react'
-import { searchState, keyDownIndexState, searchResultState } from 'states/disease'
-import { useRecoilState, useRecoilValue, useRecoilValueLoadable, useSetRecoilState } from 'recoil'
+import { ChangeEvent, FormEvent, KeyboardEvent, useState, useEffect } from 'react'
+import { keyDownIndexState, clickItemState } from 'states/disease'
+import { useRecoilState, useSetRecoilState } from 'recoil'
 import useKeyUpDown from 'hooks/keyPress/useKeyUpDown'
 import useDebounce from 'hooks/useDebounce'
 
@@ -13,11 +13,14 @@ const SearchInput = () => {
   const [search, setSearch] = useRecoilState(searchState)
   const [textHighlight, setTextHighlight] = useState('')
   const setKeyDownIndex = useSetRecoilState(keyDownIndexState)
+  const [clickState, setClickState] = useRecoilState(clickItemState)
 
 
   const { onKeyDown } = useKeyUpDown()
+
   const onChangeHandle = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchWord(e.target.value)
+    setClickState('')
     setKeyDownIndex(0)
   }
 
@@ -27,27 +30,12 @@ const SearchInput = () => {
     e.preventDefault()
   }
 
-
-  const onKeyDown = (e: KeyboardEvent) => {
-    if (e.nativeEvent.isComposing) return
-
-    if (e.key === 'ArrowUp') {
-      e.preventDefault()
+  useEffect(() => {
+    if (clickState) {
+      setSearchWord(clickState)
     }
+  }, [clickState])
 
-    if (e.key === 'ArrowDown') {
-      setKeyDownIndex((prev) => prev + 1)
-    }
-
-    if (e.key === 'ArrowUp') {
-      setKeyDownIndex((prev) => {
-        if (prev < 0) {
-          return 0
-        }
-        return prev - 1
-      })
-    }
-  }
 
   return (
     <div className={styles.searchContainer}>
