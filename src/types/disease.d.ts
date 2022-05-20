@@ -15,7 +15,7 @@ export interface IBody {
 }
 
 export interface Items {
-  item: Item | Item[]
+  item: Item | Item[] | string
 }
 
 export interface Item {

@@ -40,3 +40,4 @@ export default diseaseSlice.reducer
 // Selector =====================
 
 export const getDiseaseList = (state: RootState): Items => state.items.response
+// export const getDiseaseList = (state: RootState) => state.items.response

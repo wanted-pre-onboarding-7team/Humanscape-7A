@@ -9,7 +9,11 @@ import styles from './SearchInput.module.scss'
 
 const SearchInput = () => {
   const [searchWord, setSearchWord] = useState('')
+  const [keyDownIndex, setKeyDownIndex] = useRecoilState(keyDownIndexState)
+  const [search, setSearch] = useRecoilState(searchState)
+  const [textHighlight, setTextHighlight] = useState('')
   const setKeyDownIndex = useSetRecoilState(keyDownIndexState)
+
 
   const { onKeyDown } = useKeyUpDown()
   const onChangeHandle = (e: ChangeEvent<HTMLInputElement>) => {
@@ -21,6 +25,28 @@ const SearchInput = () => {
 
   const submitHandle = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+  }
+
+
+  const onKeyDown = (e: KeyboardEvent) => {
+    if (e.nativeEvent.isComposing) return
+
+    if (e.key === 'ArrowUp') {
+      e.preventDefault()
+    }
+
+    if (e.key === 'ArrowDown') {
+      setKeyDownIndex((prev) => prev + 1)
+    }
+
+    if (e.key === 'ArrowUp') {
+      setKeyDownIndex((prev) => {
+        if (prev < 0) {
+          return 0
+        }
+        return prev - 1
+      })
+    }
   }
 
   return (
