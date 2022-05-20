@@ -6,7 +6,13 @@ export const highLightText = (text: string, query: string) => {
       <>
         {parts.map((part, index) => {
           const key = `mark-${index}`
-          return part.toLowerCase() === query.toLowerCase() ? <mark key={key}>{part}</mark> : part
+          return part.toLowerCase() === query.toLowerCase() ? (
+            <span key={key} style={{ fontWeight: 900 }}>
+              {part}
+            </span>
+          ) : (
+            part
+          )
         })}
       </>
     )
