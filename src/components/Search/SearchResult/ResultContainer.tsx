@@ -15,6 +15,7 @@ export const SearchResult = ({ data }: ISearchResultProp) => {
   if (!data) return <SusLoding content='검색 결과가 없습니다.' />
   if (typeof data === 'string') return <SusLoding content={data} />
   if (!Array.isArray(data.item) && typeof data.item === 'object') return <SusLoding content={data.item.sickNm} />
+
   return (
     <div className={styles.resultContainer}>
       <div className={styles.resultBox}>

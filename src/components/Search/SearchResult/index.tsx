@@ -12,7 +12,6 @@ interface ISearchResultProp {
 export const SearchResult = ({ data, isLoading, isError }: ISearchResultProp) => {
   const searchWord = useSearchValue('searchText', '')
   if (searchWord === '') return null
-
   if (data === undefined || data.length === 0) {
     return (
       <div className={styles.resultContainer}>

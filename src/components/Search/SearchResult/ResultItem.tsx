@@ -4,8 +4,10 @@ import styles from './ResultItem.module.scss'
 import useItemResult from 'hooks/useItemResult'
 
 import { SearchIcon } from 'assets/svgs'
-import { keyDownIndexState, clickItemState } from 'states/disease'
-import { useRecoilValue, useSetRecoilState } from 'recoil'
+
+import { keyDownIndexState, searchState } from 'states/disease'
+import { useRecoilValue } from 'recoil'
+import { highLightText } from './utils'
 
 interface ResultItemProp {
   name: string
@@ -15,6 +17,7 @@ interface ResultItemProp {
 export const ResultItem = ({ name, index }: ResultItemProp) => {
   const { handleItemClick } = useItemResult()
   const selectedIndex = useRecoilValue(keyDownIndexState)
+  const highLight = useRecoilValue(searchState)
 
   return (
     <li
@@ -25,6 +28,7 @@ export const ResultItem = ({ name, index }: ResultItemProp) => {
     >
       <SearchIcon />
       {name}
+      <span>{highLightText(name, highLight)}</span>
     </li>
   )
 }
