@@ -12,6 +12,11 @@ export const keyDownIndexState = atom<number>({
   default: 0,
 })
 
+export const clickItemState = atom<string>({
+  key: 'clickItemState',
+  default: '',
+})
+
 export const searchResultState = selector<Items | null | string>({
   key: '#SearchResultState',
   get: async ({ get }) => {
