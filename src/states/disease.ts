@@ -7,11 +7,6 @@ export const searchState = atom<string>({
   default: '',
 })
 
-export const keyDownIndexState = atom<number>({
-  key: '#keyDownIndexState',
-  default: 0,
-})
-
 export const clickItemState = atom<string>({
   key: 'clickItemState',
   default: '',

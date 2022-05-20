@@ -1,10 +1,14 @@
+import useItemResult from 'hooks/useItemResult'
 import { KeyboardEvent } from 'react'
-import { useRecoilValueLoadable, useSetRecoilState } from 'recoil'
-import { keyDownIndexState, searchResultState } from 'states/disease'
+import { useRecoilState, useRecoilValue, useRecoilValueLoadable, useSetRecoilState } from 'recoil'
+import { keyDownIndexState, selectedValueState } from 'services/keypress'
+import { searchResultState, searchState } from 'states/disease'
 
 const useKeyUpDown = () => {
   const searchResultable = useRecoilValueLoadable(searchResultState)
-  const setKeyDownIndex = useSetRecoilState(keyDownIndexState)
+  const [keyDownIndex, setKeyDownIndex] = useRecoilState(keyDownIndexState)
+  const selectedIndexValue = useRecoilValue(selectedValueState)
+  const { handleItemClick } = useItemResult()
 
   const onKeyDown = (e: KeyboardEvent) => {
     if (e.nativeEvent.isComposing) return
@@ -32,6 +36,11 @@ const useKeyUpDown = () => {
             }
             return prev - 1
           })
+        }
+
+        if (e.key === 'Enter') {
+          console.log(selectedIndexValue)
+          handleItemClick(selectedIndexValue)
         }
       }
     }
