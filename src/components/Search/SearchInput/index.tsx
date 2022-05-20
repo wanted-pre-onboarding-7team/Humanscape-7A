@@ -1,7 +1,7 @@
 import { ChangeEvent, FormEvent, KeyboardEvent, useCallback, useState } from 'react'
-import { searchState, keyDownIndexState } from 'states/disease'
-import { useRecoilState } from 'recoil'
-
+import { searchState, keyDownIndexState, searchResultState } from 'states/disease'
+import { useRecoilState, useRecoilValue, useRecoilValueLoadable, useSetRecoilState } from 'recoil'
+import useKeyUpDown from 'hooks/keyPress/useKeyUpDown'
 import useDebounce from 'hooks/useDebounce'
 
 import { SearchIcon } from 'assets/svgs/index'
@@ -12,9 +12,13 @@ const SearchInput = () => {
   const [keyDownIndex, setKeyDownIndex] = useRecoilState(keyDownIndexState)
   const [search, setSearch] = useRecoilState(searchState)
   const [textHighlight, setTextHighlight] = useState('')
+  const setKeyDownIndex = useSetRecoilState(keyDownIndexState)
 
+
+  const { onKeyDown } = useKeyUpDown()
   const onChangeHandle = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchWord(e.target.value)
+    setKeyDownIndex(0)
   }
 
   useDebounce(searchWord, 500)
@@ -22,6 +26,7 @@ const SearchInput = () => {
   const submitHandle = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
   }
+
 
   const onKeyDown = (e: KeyboardEvent) => {
     if (e.nativeEvent.isComposing) return
