@@ -1,8 +1,7 @@
 # 원티드 프리온보딩 휴먼스케이프 과제 7-A팀
 
 [🌐 배포주소](https://humanscape-7a.netlify.app/)<br />
-
-[🌐 팀 노션](https://www.notion.so/Humanscape-7A-e8b93a1d7adb4dfd9e530bae5ea2075e)
+[🐶 팀 노션](https://www.notion.so/Humanscape-7A-e8b93a1d7adb4dfd9e530bae5ea2075e)
 
 <br />
 
@@ -10,15 +9,19 @@
 
 - 남효현, 한지선, 배수인, 설혜린, 이득규
 
-    <br />
+<br />
 
 ## 📅 **개발 기간**
 
 - 기간: 2022년 5월 18일 ~ 2022년 5월 20일
 
+<br />
+
 ## 🔧 **기술스택**
 
 - Typescript, react, scss, react-query, redux-toolkit, recoil <br />
+
+<br />
 
 ## 🌲 **파일 구조**
 
@@ -79,7 +82,7 @@ yarn install
 yarn start
 ```
 
-## **과제 구현 목록 및 사용 방법**
+## 📝 **과제 구현 목록 및 사용 방법**
 
 **![화면-기록-2022-05-20-오후-7 16 15](https://user-images.githubusercontent.com/90893364/169513184-2d3c753a-6cfb-4b0d-a41a-1a5428d6fa4b.gif)**
 
@@ -130,12 +133,11 @@ yarn start
 - `split` 으로 입력한 검색어를 기준으로 문자열을 분리하여 배열로 반환해준다. 이때, `정규표현식`을 사용하여 대소문자 구분이 없도록 만들고, 검색어 결과 값에 내가 입력한 검색어가 여러번 나와도 모두 포함해주도록 한다.
 - 문자열 분리가 된 배열을 `map` 함수를 이용하여, 검색어와 일치하는 부분만 inline-style으로 fontWeight을 bold 처리 해주었다.
 
-<br />
+<br />  
 
 ### API 최적화
 
 한글 입력 시, 연속 되는 호출을 막아주기 위해서 seTimeout 함수를 사용하여 디바운싱 작업
-
 <br />
 
 #### recoil
@@ -151,7 +153,7 @@ yarn start
 
 <br />
 
-## **어려웠던 점**
+## 😅 **어려웠던 점**
 
 - recoil, useQuery, redux를 같이 사용하며 하나의 공통 컴포넌트 이용에 있어서 Suspense 사용하는데 Suspense의 Loading 범위를 제안하며 코딩하는 부분이 어려웠다.
 - 로컬에서는 api통신이 원활했지만, 배포 시 통신 오류로 인해 http-proxy-middleware를 이용하여 중간 url를 바꿔줌으로써 오류를 해결했다.
@@ -159,11 +161,10 @@ yarn start
 
 <br />
 
-## **프로젝트 소감**
+## 🤔 **프로젝트 소감**
 
 Humanscape-7팀은 Store와 비동기 통신을 할 때 `React Query`를 함께 사용하면 더 좋다고 해서 그냥 사용하는 것이 아닌, 많은 개발자들이 왜 `Redux/Redux-Toolkit/Recoil` 과 React Query의 조합으로 스토어와 비동기 통신 관리를 하는지, 그렇다면 더 나은 방법은 없을까 같은 의문에서 부터 이러한 기획을 하게 되었습니다. 저희는 상태관리, 캐싱 처리, 비동기 통신, 전역 state 관리를 redux-toolkit, recoil, useQuery 통해 각각 진행했습니다.
 
-<br />
 
 1. Recoil: 비동기 통신의 결과값을 global state 처럼 다룰 수 있고 캐싱 기능을 제공 한다. Suspense를 사용하는 경우와 사용하지 않는 경우를 분할할 수 있지만, use-query 보다 간결성이 떨어진다.
 
@@ -171,6 +172,6 @@ Humanscape-7팀은 Store와 비동기 통신을 할 때 `React Query`를 함께 
 
 3. Redux-toolkit: store는 전역으로 상태를 관리가 필요한 팝업, 여러 UI 상태관리, 인증 정보 관리 등 Client 전반에 전역으로 관리되는 상태만 가지고 본래의 목적에 맞게 사용을 해야 하고, useQuery를 사용한 비동기 캐싱처리가 가장 편리하고 적합한 것 같다.
 
-  <br />
+<br />
 
 비동기 통신에 최적화 된 useQuery를 사용함으로 가독성 및 편의성을 증진하고, redux-toolkit & recoil 같은 상태 관리 라이브러리는 전역으로 관리되는 상태에만 적용하여 본래의 목적에 맞게 사용하는게 좋다고 생각합니다.
