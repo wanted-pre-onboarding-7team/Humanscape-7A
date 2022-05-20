@@ -161,6 +161,35 @@ yarn start
 
 <br />
 
+## 😭 **아쉬웠던 점**
+
+![콘솔 따블](https://user-images.githubusercontent.com/69314161/169601283-6ce0fd57-a5e9-4e33-874a-ce0b902450cb.png)
+- recoil로 global state를 다루는 동시에 suspense loading boundry 안에서 total count를 handling 하는 과정에서 발생한 issue 입니다. 
+- ex) useQuery api 호출(추천검색) recoil api 호출(추천검색 total count)
+
+ ```tsx
+ const Layout = () => {
+  return (
+    <div className={styles.layoutContainer}>
+      <header className={styles.header}>
+        <Header />
+      </header>
+      <main className={styles.main}>
+        <SearchInput /> {/*total count hadling*/}
+        <Suspense fallback={<Spinner />}>
+          <Outlet />
+        </Suspense>
+      </main>
+      <footer className={styles.footer}>
+        <Footer />
+      </footer>
+    </div>
+  )
+}
+ ```
+
+<br />
+
 ## 🤔 **프로젝트 소감**
 
 Humanscape-7팀은 Store와 비동기 통신을 할 때 `React Query`를 함께 사용하면 더 좋다고 해서 그냥 사용하는 것이 아닌, 많은 개발자들이 왜 `Redux/Redux-Toolkit/Recoil` 과 React Query의 조합으로 스토어와 비동기 통신 관리를 하는지, 그렇다면 더 나은 방법은 없을까 같은 의문에서 부터 이러한 기획을 하게 되었습니다. 저희는 상태관리, 캐싱 처리, 비동기 통신, 전역 state 관리를 redux-toolkit, recoil, useQuery 통해 각각 진행했습니다.
