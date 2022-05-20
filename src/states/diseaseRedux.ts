@@ -6,9 +6,10 @@ import { Items } from 'types/disease'
 
 export interface DiseaseState {
   response: Items
+  loading: boolean
 }
 
-const INIT_DISEASE = {
+export const INIT_DISEASE = {
   item: {
     sickCd: '',
     sickNm: '',
@@ -17,6 +18,7 @@ const INIT_DISEASE = {
 
 const INITIAL_STATE: DiseaseState = {
   response: INIT_DISEASE,
+  loading: false,
 }
 
 export const getDiseaseAPI = createAsyncThunk('getDiseaseList', async (currentSearch: string | null) => {
@@ -29,9 +31,14 @@ const diseaseSlice = createSlice({
   initialState: INITIAL_STATE,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(getDiseaseAPI.fulfilled, (state: DiseaseState, action) => {
-      state.response = action.payload
-    })
+    builder
+      .addCase(getDiseaseAPI.pending, (state: DiseaseState, action) => {
+        state.loading = true
+      })
+      .addCase(getDiseaseAPI.fulfilled, (state: DiseaseState, action) => {
+        state.response = action.payload
+        state.loading = false
+      })
   },
 })
 
@@ -39,5 +46,4 @@ export default diseaseSlice.reducer
 
 // Selector =====================
 
-export const getDiseaseList = (state: RootState): Items => state.items.response
-// export const getDiseaseList = (state: RootState) => state.items.response
+export const getDiseaseList = (state: RootState): DiseaseState => state.items

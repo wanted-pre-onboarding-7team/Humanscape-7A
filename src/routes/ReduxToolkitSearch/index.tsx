@@ -6,6 +6,7 @@ import { useEffect } from 'react'
 
 import { useRecoilValue } from 'recoil'
 import { searchState } from 'states/disease'
+import Spinner from 'components/Spinner'
 
 const ReduxToolkitSearch = () => {
   const searchResult = useRecoilValue(searchState)
@@ -13,13 +14,26 @@ const ReduxToolkitSearch = () => {
   const diseaseList = useAppSelector(getDiseaseList)
 
   useEffect(() => {
-    dispatch(getDiseaseAPI(searchResult))
-  }, [dispatch, searchResult])
+    if (searchResult) {
+      dispatch(getDiseaseAPI(searchResult))
+    }
+    // eslint-disable-next-line no-useless-return
+    if (!diseaseList.loading) return
+  }, [searchResult])
+
+  if (diseaseList.loading) {
+    return (
+      <div>
+        <SEO title='redux' />
+        <Spinner />
+      </div>
+    )
+  }
 
   return (
     <div>
       <SEO title='redux' />
-      <SearchResult data={diseaseList} />
+      <SearchResult data={diseaseList.response} />
     </div>
   )
 }
