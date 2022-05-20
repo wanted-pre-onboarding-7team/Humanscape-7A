@@ -11,6 +11,7 @@ const SearchInput = () => {
   const [searchWord, setSearchWord] = useState('')
   const [keyDownIndex, setKeyDownIndex] = useRecoilState(keyDownIndexState)
   const [search, setSearch] = useRecoilState(searchState)
+  const [textHighlight, setTextHighlight] = useState('')
 
   const onChangeHandle = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchWord(e.target.value)
@@ -30,7 +31,6 @@ const SearchInput = () => {
     }
 
     if (e.key === 'ArrowDown') {
-      console.log('너 잘되니?')
       setKeyDownIndex((prev) => prev + 1)
     }
 

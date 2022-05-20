@@ -44,6 +44,10 @@
       input {
         flex: 1;
         padding-left: 10px;
+
+        .highLight {
+          font-weight: bold;
+        }
       }
     }
 
