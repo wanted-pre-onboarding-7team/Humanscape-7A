@@ -5,6 +5,7 @@
 @use '/src/styles/mixins/responsive';
 
 .layoutContainer {
+  min-width: 600px;
   background-color: colors.$BACKGROUND;
 
   .main {
