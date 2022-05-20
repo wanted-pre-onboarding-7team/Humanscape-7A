@@ -21,19 +21,10 @@ const ReduxToolkitSearch = () => {
     if (!diseaseList.loading) return
   }, [searchResult])
 
-  if (diseaseList.loading) {
-    return (
-      <div>
-        <SEO title='redux' />
-        <Spinner />
-      </div>
-    )
-  }
-
   return (
     <div>
       <SEO title='redux' />
-      <SearchResult data={diseaseList.response} />
+      {diseaseList.loading ? <Spinner /> : <SearchResult data={diseaseList.response} />}
     </div>
   )
 }
