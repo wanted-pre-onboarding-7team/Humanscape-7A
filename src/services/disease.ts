@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { IDiseaseAPIRep } from 'types/disease'
 
-const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy'
+const PROXY = window.location.hostname === 'localhost' ? '/api' : '/proxy'
 
 const url = '/B551182/diseaseInfoService/getDissNameCodeList'
 
