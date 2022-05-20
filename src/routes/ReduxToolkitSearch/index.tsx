@@ -19,6 +19,7 @@ const ReduxToolkitSearch = () => {
     }
     // eslint-disable-next-line no-useless-return
     if (!diseaseList.loading) return
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchResult])
 
   return (

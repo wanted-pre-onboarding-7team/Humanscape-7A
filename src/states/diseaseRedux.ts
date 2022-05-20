@@ -32,7 +32,7 @@ const diseaseSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(getDiseaseAPI.pending, (state: DiseaseState, action) => {
+      .addCase(getDiseaseAPI.pending, (state: DiseaseState) => {
         state.loading = true
       })
       .addCase(getDiseaseAPI.fulfilled, (state: DiseaseState, action) => {
