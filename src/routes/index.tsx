@@ -8,7 +8,7 @@ const App = () => {
   return (
     <Routes>
       <Route element={<Layout />}>
-        <Route path='' element={<RecoilSearch />} />
+        <Route path='/' element={<RecoilSearch />} />
         <Route path='usequery' element={<ReactQuery />} />
         <Route path='redux' element={<ReduxToolkitSearch />} />
       </Route>
