@@ -5,9 +5,9 @@ export default function (app) {
   app.use(
     '/api',
     createProxyMiddleware({
-      target: 'https://apis.data.go.kr',
+      target: 'http://apis.data.go.kr',
       changeOrigin: true,
-      router: { '/api': 'https://apis.data.go.kr' },
+      router: { '/api': 'http://apis.data.go.kr' },
       pathRewrite: { '^/api': '' },
     })
   )
