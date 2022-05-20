@@ -11,12 +11,12 @@ const Header = () => {
         <nav>
           <ul>
             <li>
-              <NavLink to='/recoil' className={({ isActive }) => cx({ [styles.isActive]: isActive })}>
+              <NavLink to='/' className={({ isActive }) => cx({ [styles.isActive]: isActive })}>
                 Recoil
               </NavLink>
             </li>
             <li>
-              <NavLink to='/' className={({ isActive }) => cx({ [styles.isActive]: isActive })} color='#2d3d50'>
+              <NavLink to='/usequery' className={({ isActive }) => cx({ [styles.isActive]: isActive })} color='#2d3d50'>
                 React-Query
               </NavLink>
             </li>

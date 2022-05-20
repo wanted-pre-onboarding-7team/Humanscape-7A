@@ -8,9 +8,9 @@ const App = () => {
   return (
     <Routes>
       <Route element={<Layout />}>
-        <Route path='/' element={<ReactQuery />} />
+        <Route path='' element={<RecoilSearch />} />
+        <Route path='usequery' element={<ReactQuery />} />
         <Route path='redux' element={<ReduxToolkitSearch />} />
-        <Route path='recoil' element={<RecoilSearch />} />
       </Route>
     </Routes>
   )
