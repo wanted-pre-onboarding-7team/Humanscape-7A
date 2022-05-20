@@ -23,11 +23,9 @@ export const ResultItem = ({ name, index }: ResultItemProp) => {
     <li
       role='presentation'
       className={cx(styles.item, { [styles.selectedItem]: selectedIndex === index })}
-      value={name}
       onClick={() => handleItemClick(name)}
     >
       <SearchIcon />
-      {name}
       <span>{highLightText(name, highLight)}</span>
     </li>
   )
