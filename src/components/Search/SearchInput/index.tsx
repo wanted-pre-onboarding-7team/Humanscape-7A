@@ -29,9 +29,7 @@ const SearchInput = () => {
   }
 
   useEffect(() => {
-    if (clickState) {
-      setSearchWord(clickState)
-    }
+    setSearchWord(clickState)
   }, [clickState])
 
   return (
