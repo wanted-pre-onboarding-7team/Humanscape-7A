@@ -1,4 +1,5 @@
 import styles from './SusLoading.module.scss'
+import { SearchForm } from 'assets/svgs/index'
 
 interface SuSLoding {
   content: string
@@ -7,7 +8,10 @@ interface SuSLoding {
 export const SusLoding = ({ content }: SuSLoding) => {
   return (
     <div className={styles.resultContainer}>
-      <div className={styles.resultBox}>{content}</div>
+      <div className={styles.resultBox}>
+        <SearchForm />
+        {content}
+      </div>
     </div>
   )
 }

@@ -13,7 +13,7 @@ const SearchInput = () => {
   const [search, setSearch] = useRecoilState(searchState)
 
   const onChangeHandle = (e: ChangeEvent<HTMLInputElement>) => {
-    setSearchWord(e.target.value)
+    setSearchWord(e.currentTarget.value)
   }
 
   useDebounce(searchWord, 500)

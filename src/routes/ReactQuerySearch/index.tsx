@@ -10,7 +10,7 @@ import { useSearchFn } from 'hooks/useSearch'
 const ReactQuery = () => {
   const [searchParams] = useSearchParams()
   const currentSearch = searchParams.get('search')
-  // const search = useSearchFn({ param: currentSearch }) // 인터페이스와 이름같아야함
+  const search = useSearchFn({ param: currentSearch }) // 인터페이스와 이름같아야함
   const searchWord = useSearchValue('searchText', '')
 
   const { data, isLoading, isError } = useQuery(

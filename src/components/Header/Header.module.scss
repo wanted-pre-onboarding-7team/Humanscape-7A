@@ -14,7 +14,7 @@
     justify-content: space-between;
     width: 100%;
     height: 100%;
-    padding: 0 20px;
+    padding: 0 10px;
     margin: 0 auto;
   }
 
@@ -43,7 +43,10 @@
 }
 
 @include responsive.after(MD) {
-  .headerWrapper {
-    max-width: 1000px;
+  .headerContainer {
+    .headerWrapper {
+      width: 1000px;
+      padding: 0;
+    }
   }
 }

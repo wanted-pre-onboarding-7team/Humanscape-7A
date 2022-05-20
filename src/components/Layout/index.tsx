@@ -5,7 +5,7 @@ import Header from 'components/Header'
 import Footer from 'components/Footer'
 import { Suspense } from 'react'
 import SearchInput from 'components/Search/SearchInput'
-import { SusLoding } from 'components/Loading/SusLoding'
+import Spinner from 'components/Spinner'
 
 const Layout = () => {
   return (
@@ -15,7 +15,7 @@ const Layout = () => {
       </header>
       <main className={styles.main}>
         <SearchInput />
-        <Suspense fallback={<SusLoding content='로딩중입니다.' />}>
+        <Suspense fallback={<Spinner />}>
           <Outlet />
         </Suspense>
       </main>
