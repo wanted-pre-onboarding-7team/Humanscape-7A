@@ -9,12 +9,9 @@ import styles from './SearchInput.module.scss'
 
 const SearchInput = () => {
   const [searchWord, setSearchWord] = useState('')
-  const [keyDownIndex, setKeyDownIndex] = useRecoilState(keyDownIndexState)
-  const [search, setSearch] = useRecoilState(searchState)
   const [textHighlight, setTextHighlight] = useState('')
   const setKeyDownIndex = useSetRecoilState(keyDownIndexState)
   const [clickState, setClickState] = useRecoilState(clickItemState)
-
 
   const { onKeyDown } = useKeyUpDown()
 
@@ -35,7 +32,6 @@ const SearchInput = () => {
       setSearchWord(clickState)
     }
   }, [clickState])
-
 
   return (
     <div className={styles.searchContainer}>
