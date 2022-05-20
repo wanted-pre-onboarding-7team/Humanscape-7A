@@ -192,7 +192,7 @@ yarn start
 
 ## 🤔 **프로젝트 소감**
 
-Humanscape-7팀은 Store와 비동기 통신을 할 때 `React Query`를 함께 사용하면 더 좋다고 해서 그냥 사용하는 것이 아닌, 많은 개발자들이 왜 `Redux/Redux-Toolkit/Recoil` 과 React Query의 조합으로 스토어와 비동기 통신 관리를 하는지, 그렇다면 더 나은 방법은 없을까 같은 의문에서 부터 이러한 기획을 하게 되었습니다. 저희는 상태관리, 캐싱 처리, 비동기 통신, 전역 state 관리를 redux-toolkit, recoil, useQuery 통해 각각 진행했습니다.
+Humanscape-7A팀은 Store와 비동기 통신을 할 때 `React Query`를 함께 사용하면 더 좋다고 해서 그냥 사용하는 것이 아닌, 많은 개발자들이 왜 `Redux/Redux-Toolkit/Recoil` 과 React Query의 조합으로 스토어와 비동기 통신 관리를 하는지, 그렇다면 더 나은 방법은 없을까 같은 의문에서 부터 이러한 기획을 하게 되었습니다. 저희는 상태관리, 캐싱 처리, 비동기 통신, 전역 state 관리를 redux-toolkit, recoil, useQuery 통해 각각 진행했습니다.
 
 
 1. Recoil: 비동기 통신의 결과값을 global state 처럼 다룰 수 있고 캐싱 기능을 제공 한다. Suspense를 사용하는 경우와 사용하지 않는 경우를 분할할 수 있지만, use-query 보다 간결성이 떨어진다.
