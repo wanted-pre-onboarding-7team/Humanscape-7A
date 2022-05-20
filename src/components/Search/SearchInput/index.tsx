@@ -1,15 +1,15 @@
 import { ChangeEvent, FormEvent, KeyboardEvent, useState, useEffect } from 'react'
-import { keyDownIndexState, clickItemState } from 'states/disease'
+import { clickItemState } from 'states/disease'
 import { useRecoilState, useSetRecoilState } from 'recoil'
 import useKeyUpDown from 'hooks/keyPress/useKeyUpDown'
 import useDebounce from 'hooks/useDebounce'
 
 import { SearchIcon } from 'assets/svgs/index'
 import styles from './SearchInput.module.scss'
+import { keyDownIndexState } from 'services/keypress'
 
 const SearchInput = () => {
   const [searchWord, setSearchWord] = useState('')
-  const [textHighlight, setTextHighlight] = useState('')
   const setKeyDownIndex = useSetRecoilState(keyDownIndexState)
   const [clickState, setClickState] = useRecoilState(clickItemState)
 
@@ -18,7 +18,7 @@ const SearchInput = () => {
   const onChangeHandle = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchWord(e.target.value)
     setClickState('')
-    setKeyDownIndex(0)
+    setKeyDownIndex(-1)
   }
 
   useDebounce(searchWord, 500)

@@ -1,6 +1,6 @@
 import SEO from 'components/Seo'
+import { SearchResult } from 'components/Search/SearchResult'
 import useQuerySearch from 'hooks/useQuerySearch'
-import { SearchResult } from 'components/Search/SearchResult/ResultContainer'
 
 const ReactQuery = () => {
   const { data } = useQuerySearch()
