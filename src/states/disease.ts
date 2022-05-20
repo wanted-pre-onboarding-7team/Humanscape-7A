@@ -1,6 +1,6 @@
 import { atom, selector } from 'recoil'
 import { getOpenDiseaseAPi } from 'services/disease'
-import { IBody, Items } from 'types/disease'
+import { IBody } from 'types/disease'
 
 export const searchState = atom<string>({
   key: '#searchState',

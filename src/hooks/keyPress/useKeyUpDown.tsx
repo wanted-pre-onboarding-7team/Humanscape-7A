@@ -1,12 +1,12 @@
 import useItemResult from 'hooks/useItemResult'
 import { KeyboardEvent } from 'react'
-import { useRecoilState, useRecoilValue, useRecoilValueLoadable, useSetRecoilState } from 'recoil'
+import { useRecoilState, useRecoilValue, useRecoilValueLoadable } from 'recoil'
 import { keyDownIndexState, selectedValueState } from 'services/keypress'
 import { searchResultState } from 'states/disease'
 
 const useKeyUpDown = () => {
   const searchResultable = useRecoilValueLoadable(searchResultState)
-  const [keyDownIndex, setKeyDownIndex] = useRecoilState(keyDownIndexState)
+  const [, setKeyDownIndex] = useRecoilState(keyDownIndexState)
   const selectedIndexValue = useRecoilValue(selectedValueState)
   const { handleItemClick } = useItemResult()
 

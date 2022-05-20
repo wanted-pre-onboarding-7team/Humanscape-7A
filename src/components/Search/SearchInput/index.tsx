@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, KeyboardEvent, useState, useEffect } from 'react'
+import { ChangeEvent, FormEvent, useState, useEffect } from 'react'
 import { clickItemState } from 'states/disease'
 import { useRecoilState, useSetRecoilState } from 'recoil'
 import useKeyUpDown from 'hooks/keyPress/useKeyUpDown'

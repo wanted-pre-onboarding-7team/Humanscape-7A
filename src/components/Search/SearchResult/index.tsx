@@ -1,4 +1,3 @@
-import styles from './SearchResult.module.scss'
 import { SusLoding } from 'components/Loading/NoResult'
 import { ResultItem } from './ResultItem'
 import { Items } from 'types/disease'
