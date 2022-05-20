@@ -5,6 +5,7 @@ import Header from 'components/Header'
 import Footer from 'components/Footer'
 import { Suspense } from 'react'
 import SearchInput from 'components/Search/SearchInput'
+import Spinner from 'components/Spinner'
 
 const Layout = () => {
   return (
@@ -14,7 +15,7 @@ const Layout = () => {
       </header>
       <main className={styles.main}>
         <SearchInput />
-        <Suspense fallback={<div>로딩 중</div>}>
+        <Suspense fallback={<Spinner />}>
           <Outlet />
         </Suspense>
       </main>
