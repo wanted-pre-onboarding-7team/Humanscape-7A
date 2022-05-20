@@ -10,7 +10,8 @@ const useQuerySearch = () => {
     ['getDiseaseAPi', search],
     () =>
       getOpenDiseaseAPi({ searchText: search }).then((res) => {
-        console.log('react-query API 호출')
+        // eslint-disable-next-line no-console
+        console.count('react-query API 호출')
         return res.data.response.body.items
       }),
     {

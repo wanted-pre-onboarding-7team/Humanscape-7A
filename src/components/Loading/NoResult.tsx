@@ -1,4 +1,4 @@
-import styles from './SusLoading.module.scss'
+import styles from './NoResult.module.scss'
 import { SearchForm } from 'assets/svgs/index'
 
 interface SuSLoding {
