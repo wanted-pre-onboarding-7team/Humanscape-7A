@@ -10,7 +10,6 @@ import { useRecoilValue, useSetRecoilState } from 'recoil'
 import { highLightText } from './utils'
 import { keyDownIndexState, selectedValueState } from 'services/keypress'
 import { useCallback, useEffect } from 'react'
-import { useMounted } from 'hooks'
 
 interface ResultItemProp {
   name: string
@@ -23,17 +22,17 @@ export const ResultItem = ({ name, index }: ResultItemProp) => {
   const highLight = useRecoilValue(searchState)
   const selectedIndexValue = useSetRecoilState(selectedValueState)
 
-  const test = useCallback(
-    (a: number, b: number, c: string) => {
-      if (a === b) {
-        selectedIndexValue(c)
+  const updateItemValue = useCallback(
+    (seletedIndex: number, currentIndex: number, value: string) => {
+      if (seletedIndex === currentIndex) {
+        selectedIndexValue(value)
       }
     },
-    [name, selectedIndexValue]
+    [selectedIndexValue]
   )
   useEffect(() => {
-    test(selectedIndex, index, name)
-  }, [index, name, selectedIndex, test])
+    updateItemValue(selectedIndex, index, name)
+  }, [index, name, selectedIndex, selectedIndexValue, updateItemValue])
 
   return (
     <li

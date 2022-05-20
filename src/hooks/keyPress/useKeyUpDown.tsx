@@ -2,7 +2,7 @@ import useItemResult from 'hooks/useItemResult'
 import { KeyboardEvent } from 'react'
 import { useRecoilState, useRecoilValue, useRecoilValueLoadable, useSetRecoilState } from 'recoil'
 import { keyDownIndexState, selectedValueState } from 'services/keypress'
-import { searchResultState, searchState } from 'states/disease'
+import { searchResultState } from 'states/disease'
 
 const useKeyUpDown = () => {
   const searchResultable = useRecoilValueLoadable(searchResultState)
@@ -39,7 +39,6 @@ const useKeyUpDown = () => {
         }
 
         if (e.key === 'Enter') {
-          console.log(selectedIndexValue)
           handleItemClick(selectedIndexValue)
         }
       }

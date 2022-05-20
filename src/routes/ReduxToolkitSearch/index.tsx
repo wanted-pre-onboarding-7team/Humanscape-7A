@@ -1,7 +1,7 @@
 import SEO from 'components/Seo'
 import { useAppDispatch, useAppSelector } from 'hooks'
 import { getDiseaseList, getDiseaseAPI } from 'states/diseaseRedux'
-import { SearchResult } from 'components/Search/SearchResult/ResultContainer'
+import { SearchResult } from 'components/Search/SearchResult'
 import { useEffect } from 'react'
 
 import { useRecoilValue } from 'recoil'

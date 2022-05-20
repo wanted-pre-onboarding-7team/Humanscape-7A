@@ -2,7 +2,7 @@ import { useQuery } from 'react-query'
 
 import SEO from 'components/Seo'
 import { getOpenDiseaseAPi } from 'services/disease'
-import { SearchResult } from 'components/Search/SearchResult/ResultContainer'
+import { SearchResult } from 'components/Search/SearchResult'
 import { useRecoilValue } from 'recoil'
 import { searchState } from 'states/disease'
 

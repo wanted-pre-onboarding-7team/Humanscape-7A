@@ -11,6 +11,11 @@ const Header = () => {
         <nav>
           <ul>
             <li>
+              <NavLink to='/recoil' className={({ isActive }) => cx({ [styles.isActive]: isActive })}>
+                Recoil
+              </NavLink>
+            </li>
+            <li>
               <NavLink to='/' className={({ isActive }) => cx({ [styles.isActive]: isActive })} color='#2d3d50'>
                 React-Query
               </NavLink>
@@ -18,11 +23,6 @@ const Header = () => {
             <li>
               <NavLink to='/redux' className={({ isActive }) => cx({ [styles.isActive]: isActive })}>
                 Redux-Toolkit
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to='/recoil' className={({ isActive }) => cx({ [styles.isActive]: isActive })}>
-                Recoil
               </NavLink>
             </li>
           </ul>

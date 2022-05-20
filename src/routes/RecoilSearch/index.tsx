@@ -1,4 +1,4 @@
-import { SearchResult } from 'components/Search/SearchResult/ResultContainer'
+import { SearchResult } from 'components/Search/SearchResult'
 import SEO from 'components/Seo'
 
 import { useRecoilValue } from 'recoil'

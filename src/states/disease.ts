@@ -39,7 +39,4 @@ export const searchResultState = selector<IBody | string>({
 
     return result
   },
-  cachePolicy_UNSTABLE: {
-    eviction: 'most-recent',
-  },
 })

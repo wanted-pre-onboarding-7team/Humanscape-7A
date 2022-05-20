@@ -1,42 +1,30 @@
 import styles from './SearchResult.module.scss'
-import { SearchIcon } from 'assets/svgs/index'
-
-import useSearchValue from 'hooks/useSearchValue'
+import { SusLoding } from 'components/Loading/NoResult'
+import { ResultItem } from './ResultItem'
+import { Items } from 'types/disease'
+import { useRecoilValue } from 'recoil'
+import { SearchContainer } from './ResultContainer'
+import { searchState } from 'states/disease'
 
 interface ISearchResultProp {
-  data: any[] | undefined
-  isLoading: boolean
-  isError: boolean
+  data: Items | null | string | undefined
 }
+export const SearchResult = ({ data }: ISearchResultProp) => {
+  const search = useRecoilValue(searchState)
 
-export const SearchResult = ({ data, isLoading, isError }: ISearchResultProp) => {
-  const searchWord = useSearchValue('searchText', '')
-  if (searchWord === '') return null
-  if (data === undefined || data.length === 0) {
+  if (!search) return null
+  if (!data) return <SusLoding content='검색 결과가 없습니다.' />
+  if (typeof data === 'string') return <SusLoding content={data} />
+  if (!Array.isArray(data.item) && typeof data.item === 'object')
     return (
-      <div className={styles.resultContainer}>
-        <div className={styles.resultBox}>
-          <span className={styles.resultTitle}>검색 결과가 없습니다</span>
-        </div>
-      </div>
+      <SearchContainer>
+        <ResultItem key={data.item.sickCd} index={0} name={data.item.sickNm} />
+      </SearchContainer>
     )
-  }
-
   return (
-    <div className={styles.resultContainer}>
-      <div className={styles.resultBox}>
-        <span className={styles.resultTitle}>추천 검색어</span>
-        <ul className={styles.scrollBox}>
-          {data.map((item) => {
-            return (
-              <li key={item.sickCd} className={styles.item}>
-                <SearchIcon />
-                {item.sickNm}
-              </li>
-            )
-          })}
-        </ul>
-      </div>
-    </div>
+    <SearchContainer>
+      {Array.isArray(data.item) &&
+        data.item.map((item, index) => <ResultItem key={item.sickCd} index={index} name={item.sickNm} />)}
+    </SearchContainer>
   )
 }
