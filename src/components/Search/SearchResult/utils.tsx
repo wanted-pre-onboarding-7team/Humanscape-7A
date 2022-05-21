@@ -7,9 +7,9 @@ export const highLightText = (text: string, query: string) => {
         {parts.map((part, index) => {
           const key = `mark-${index}`
           return part.toLowerCase() === query.toLowerCase() ? (
-            <span key={key} style={{ fontWeight: 900 }}>
+            <mark key={key} style={{ fontWeight: 900 }}>
               {part}
-            </span>
+            </mark>
           ) : (
             part
           )

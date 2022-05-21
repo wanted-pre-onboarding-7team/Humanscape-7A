@@ -41,7 +41,7 @@ export const ResultItem = ({ name, index }: ResultItemProp) => {
       onClick={() => handleItemClick(name)}
     >
       <SearchIcon />
-      <span>{highLightText(name, highLight)}</span>
+      {highLightText(name, highLight)}
     </li>
   )
 }
