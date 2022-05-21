@@ -3,13 +3,14 @@ import styles from './ResultItem.module.scss'
 
 import useItemResult from 'hooks/useItemResult'
 
-import { SearchIcon } from 'assets/svgs'
-
-import { searchState } from 'states/disease'
-import { useRecoilValue, useSetRecoilState } from 'recoil'
-import { highLightText } from './utils'
-import { keyDownIndexState, selectedValueState } from 'services/keypress'
 import { useCallback, useEffect } from 'react'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
+import { keyDownIndexState, selectedValueState } from 'services/keypress'
+import { searchState } from 'states/disease'
+
+import { highLightText } from './utils'
+
+import { SearchIcon } from 'assets/svgs'
 
 interface ResultItemProp {
   name: string
@@ -17,10 +18,11 @@ interface ResultItemProp {
 }
 
 export const ResultItem = ({ name, index }: ResultItemProp) => {
-  const { handleItemClick } = useItemResult()
   const selectedIndex = useRecoilValue(keyDownIndexState)
   const highLight = useRecoilValue(searchState)
   const selectedIndexValue = useSetRecoilState(selectedValueState)
+
+  const { handleItemClick } = useItemResult()
 
   const updateItemValue = useCallback(
     (seletedIndex: number, currentIndex: number, value: string) => {

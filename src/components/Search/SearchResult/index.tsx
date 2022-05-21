@@ -1,9 +1,11 @@
-import { NoResult } from 'components/Loading/NoResult'
-import { ResultItem } from './ResultItem'
 import { Items } from 'types/disease'
+
 import { useRecoilValue } from 'recoil'
-import { SearchContainer } from './ResultContainer'
 import { searchState } from 'states/disease'
+
+import { SearchContainer } from './ResultContainer'
+import { ResultItem } from './ResultItem'
+import { NoResult } from 'components/Loading/NoResult'
 
 interface ISearchResultProp {
   data: Items | null | string | undefined

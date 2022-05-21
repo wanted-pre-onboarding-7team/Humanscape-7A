@@ -1,17 +1,13 @@
 import styles from './NoResult.module.scss'
-import { SearchForm } from 'assets/svgs/index'
 
 interface SuSLoding {
   content: string
 }
 
-export const SusLoding = ({ content }: SuSLoding) => {
+export const NoResult = ({ content }: SuSLoding) => {
   return (
     <div className={styles.resultContainer}>
-      <div className={styles.resultBox}>
-        <SearchForm />
-        {content}
-      </div>
+      <div className={styles.resultBox}>{content}</div>
     </div>
   )
 }

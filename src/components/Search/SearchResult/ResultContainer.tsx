@@ -1,6 +1,10 @@
 import styles from './SearchResult.module.scss'
 
-export const SearchContainer = ({ children }: any) => {
+interface searchContainerProp {
+  children: React.ReactNode
+}
+
+export const SearchContainer = ({ children }: searchContainerProp) => {
   return (
     <div className={styles.resultContainer}>
       <div className={styles.resultBox}>

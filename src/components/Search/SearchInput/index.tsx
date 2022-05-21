@@ -1,4 +1,5 @@
 import { ChangeEvent, FormEvent, useState, useEffect } from 'react'
+
 import { clickItemState } from 'states/disease'
 import { useRecoilState, useSetRecoilState } from 'recoil'
 
@@ -11,6 +12,7 @@ import { keyDownIndexState } from 'services/keypress'
 
 const SearchInput = () => {
   const [searchWord, setSearchWord] = useState('')
+
   const setKeyDownIndex = useSetRecoilState(keyDownIndexState)
   const [clickState, setClickState] = useRecoilState(clickItemState)
 

@@ -1,7 +1,8 @@
-import { NavLink } from 'react-router-dom'
 import styles from './Header.module.scss'
-import cx from 'classnames'
 import { Logo } from 'assets/svgs/index'
+
+import { NavLink } from 'react-router-dom'
+import cx from 'classnames'
 
 const Header = () => {
   return (
